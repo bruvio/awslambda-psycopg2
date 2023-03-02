@@ -167,8 +167,7 @@ def make_dsn(dsn=None, **kwargs):
         tmp.update(kwargs)
         kwargs = tmp
 
-    dsn = " ".join(["%s=%s" % (k, _param_escape(str(v)))
-        for (k, v) in kwargs.items()])
+    dsn = " ".join([f"{k}={_param_escape(str(v))}" for (k, v) in kwargs.items()])
 
     # verify that the returned dsn is valid
     parse_dsn(dsn)
@@ -187,7 +186,7 @@ def _param_escape(s,
 
     s = re_escape.sub(r'\\\1', s)
     if re_space.search(s):
-        s = "'" + s + "'"
+        s = f"'{s}'"
 
     return s
 
