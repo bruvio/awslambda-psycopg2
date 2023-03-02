@@ -22,7 +22,7 @@ def lru_cache(maxsize=100):
     """
     def decorating_function(user_function):
 
-        cache = dict()
+        cache = {}
         stats = [0, 0]                  # make statistics updateable non-locally
         HITS, MISSES = 0, 1             # names for the stats fields
         cache_get = cache.get           # bound method to lookup key or return None
@@ -33,7 +33,7 @@ def lru_cache(maxsize=100):
         nonlocal_root = [root]                  # make updateable non-locally
         PREV, NEXT, KEY, RESULT = 0, 1, 2, 3    # names for the link fields
 
-        assert maxsize and maxsize > 0, "maxsize %s not supported" % maxsize
+        assert maxsize and maxsize > 0, f"maxsize {maxsize} not supported"
 
         def wrapper(*args):
             # size limited caching that tracks accesses by recency

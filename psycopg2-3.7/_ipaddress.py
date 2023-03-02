@@ -74,16 +74,11 @@ def _make_casters():
 
 
 def cast_interface(s, cur=None):
-    if s is None:
-        return None
-    # Py2 version force the use of unicode. meh.
-    return ipaddress.ip_interface(text_type(s))
+    return None if s is None else ipaddress.ip_interface(text_type(s))
 
 
 def cast_network(s, cur=None):
-    if s is None:
-        return None
-    return ipaddress.ip_network(text_type(s))
+    return None if s is None else ipaddress.ip_network(text_type(s))
 
 
 def adapt_ipaddress(obj):
